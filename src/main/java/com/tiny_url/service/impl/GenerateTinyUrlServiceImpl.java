@@ -19,9 +19,9 @@ public class GenerateTinyUrlServiceImpl implements GenerateTinyUrlService {
 
     @Override
     public String generateTinyUrl(UrlDto urlDto) {
-//        log.info("generateTinyUrl");
+        log.info("generateTinyUrl");
         String tinyUrl = generateHashString(urlDto);
-//        log.info("tinyUrl: {}", tinyUrl);
+        log.info("tinyUrl: {}", tinyUrl);
         UrlEntity urlEntity = new UrlEntity();
         urlEntity.setOriginalUrl(urlDto.getUrl());
         urlEntity.setTinyUrl(tinyUrl);
@@ -47,7 +47,7 @@ public class GenerateTinyUrlServiceImpl implements GenerateTinyUrlService {
         return id.toString();
     }
 
-    private LocalDateTime getExpireAt(UrlDto urlDto) {
-        return  LocalDateTime.now().plusDays(urlDto.getExpireIn());
-    }
+     private LocalDateTime getExpireAt(UrlDto urlDto) {
+         return  LocalDateTime.now().plusDays(Integer.parseInt(urlDto.getExpireIn()));
+     }
 }
