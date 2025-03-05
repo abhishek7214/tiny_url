@@ -26,9 +26,13 @@ public class GenerateTinyUrlServiceImpl implements GenerateTinyUrlService {
         urlEntity.setOriginalUrl(urlDto.getUrl());
         urlEntity.setTinyUrl(tinyUrl);
         urlEntity.setExpired(false);
-        urlEntity.setExpireAt(getExpireAt(urlDto));
         urlRepository.save(urlEntity);
         return tinyUrl;
+    }
+
+    @Override
+    public String getOriginalUrl(String tinyUrl) {
+        return urlRepository.findByTinyUrl(tinyUrl).getOriginalUrl();
     }
 
     private String generateHashString(UrlDto urlDto) {
