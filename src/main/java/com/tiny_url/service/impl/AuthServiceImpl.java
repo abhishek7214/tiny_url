@@ -19,4 +19,12 @@ public class AuthServiceImpl implements AuthService {
         }
         throw new RuntimeException("Invalid credentials");
     }
+
+    @Override
+    public String validateToken(String authorizationHeader) {
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            return jwtUtil.extractUsername(authorizationHeader.substring(7));
+        }
+        throw new RuntimeException("Invalid token");
+    }
 }
