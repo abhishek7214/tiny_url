@@ -15,5 +15,5 @@ public class UrlDto {
     private String url;
 
     @JsonProperty("expireIn")
-    private String expireIn;
+    private int expireIn;
 }
